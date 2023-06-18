@@ -7,10 +7,10 @@ resource "aws_instance" "Jenkins-master" {
     availability_zone         = var.ZONE
     key_name                  = "terraKey" # key to ssh to server
     vpc_security_group_ids    = ["jenkinSG"]
-    tags                      = {
-                                    Name = "Jenkins-master"
-                                    Project = "Jenkins-on-AWS"
-                                }
+    tags= {
+        Name = "Jenkins-master"
+        Project = "Jenkins-on-AWS"
+    }
   
 }
 #----------------------------------------
@@ -22,9 +22,9 @@ resource "aws_instance" "Build-server" {
     availability_zone         = var.ZONE
     key_name                  = "terraKey"  # key to ssh to server
     vpc_security_group_ids    = ["BuildServerSG"]
-    tags                      = {
-                                   Name = "Build-server"
-                                   Project = "Jenkins-on-AWS"
-                                }
+    tags = {
+        Name = "Build-server"
+        Project = "Jenkins-on-AWS"
+    }
   
 }

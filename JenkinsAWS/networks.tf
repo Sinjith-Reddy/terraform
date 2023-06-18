@@ -50,9 +50,9 @@ resource "aws_security_group" "BuildServerSG" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    source           = [jenkinsSG.id]
-    cidr_blocks      = [data.aws_vpc.default.cidr_block]
-    //ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
+    security_groups  = ["jenkinsSG"]
+    #cidr_blocks      = [data.aws_vpc.default.cidr_block]
+    #ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
   }
   egress {
     from_port        = 0
