@@ -1,5 +1,5 @@
 // data source
-// get the details of the default vpc
+// get the details of the default vpc to use below while creating securty groups
 data "aws_vpc" "default" {
   default = true   //filter
 }
