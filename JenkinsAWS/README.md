@@ -1,2 +1,2 @@
 ## Jenkins on AWS
-This repo two EC2 instance one Jenkins Server and Build server and two seperate security group one for Jenkins and another for Build environment
+This repo creates two EC2 instances one Jenkins Server and Build server and two security groups one for Jenkins and another for Build environment with appropriate inbound rules.
