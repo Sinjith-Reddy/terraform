@@ -1,8 +1,26 @@
+data "aws_ami" "ubuntu" {
+    owners = [ "ubuntu" ]
+    most_recent = true
+    filter {
+      name = "name"
+      values = [ "ubuntu/images/hvm-ssd/ubuntu-jammy-22.*" ]  # ubuntu latest 
+    }
+  
+}
+data "aws_ami" "AWSLinux" {
+    owners = ["amazon"]
+    most_recent = true
+    filter {
+      name = "name"
+      values = [ "al2023-ami-2023.0.20230614.0-kernel-*" ] # Amazon Linux 2023
+    }
+  
+}
 #----------------------------------------
 #EC2 instance for Jenkins Master
 #----------------------------------------
 resource "aws_instance" "Jenkins-master" {
-    ami                       = var.AMI["ubuntu"]
+    ami                       = data.aws_ami.ubuntu.id
     instance_type             = var.instance
     availability_zone         = var.ZONE
     key_name                  = "terraKey" # key to ssh to server
@@ -17,7 +35,7 @@ resource "aws_instance" "Jenkins-master" {
 #EC2 instance for Build server
 #----------------------------------------
 resource "aws_instance" "Build-server" {
-    ami                       = var.AMI["AWSLinux"]
+    ami                       = data.aws_ami.AWSLinux.id
     instance_type             = var.instance
     availability_zone         = var.ZONE
     key_name                  = "terraKey"  # key to ssh to server
